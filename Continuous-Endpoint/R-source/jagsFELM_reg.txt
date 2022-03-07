@@ -1,0 +1,19 @@
+
+model{
+  for(j in 1:length(Y)){
+    # normal likelihood
+    mu[j] <- beta0 + betaReg[region.number[j]] + (gamma + gammaReg[region.number[j]]) * trtmt.indctr[j]
+    Y[j] ~ dnorm(mu[j], tauerr)       # tauerr is precision (inverse of variance)
+  }
+  # priors
+  beta0 ~ dnorm(0, .0001)             # 0.0001 is a precision, not a variance. Variance is 10000
+  gamma ~ dnorm(0, .0001)
+  tauerr ~ dgamma(.001, .001)
+  betaReg[1] = 0
+  gammaReg[1] = 0
+  for(i in 2:max(region.number)){
+    betaReg[i] ~ dnorm(0, .0001)
+    gammaReg[i] ~ dnorm(0, .0001)
+  }
+}
+
