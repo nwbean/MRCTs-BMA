@@ -1,10 +1,22 @@
 # MRCTs-BMA
 
-This repository contains all files and code used in the simulation studies presented in the paper "Bayesian multi-regional clinical trials using model averaging" (DOI: kxab027) in _Biostatistics_. These files can be used to reproduce all simulation results.
+This repository contains all files and code used in the simulation studies that evaluate the Bayesian model averaging (BMA) approach for multi-regional clinical trials (MRCTs) with either a continuous or a time-to-event endpoint.
+
+
+Continuous-Endpoint
+   - Contains all files and code used in the simulation studies that evaluate the BMA approach
+     for MRCTs with a continuous endpoint, as presented in the paper "Bayesian multi-regional
+     clinical trials using model averaging" (DOI: kxab027) in _Biostatistics_. These files can
+     be used to reproduce all simulation results.
+
+
+Time-to-Event-Endpoint
+   - Contains all files and code used in the simulation studies that evaluate the BMA approach
+     for MRCTs with a time-to-event endpoint.
 
 
 
-GUIDE TO SIMULATION CODE (MORE-DETAILED GUIDES PROVIDED IN EACH FOLDER):
+GUIDE TO SIMULATION CODE IN FOLDERS "CONTINUOUS-ENDPOINT" AND "TIME-TO-EVENT-ENDPOINT" (MORE-DETAILED GUIDES PROVIDED IN EACH FOLDER AND EACH SUBFOLDER):
 
 
 In addition to the following folders found in this GitHub repository, blank folders should also be created titled "cluster-err" and "cluster-out". Error files and out files from the cluster will be saved here when running the simulations.
