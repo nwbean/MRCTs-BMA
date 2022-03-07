@@ -1,0 +1,19 @@
+
+model{
+  for(i in 1:max(region)){
+    # Likelihood part of Bayesian inference
+    y[i] ~ dnorm(mui[i], 1/s2i[i])
+  }
+  
+  # Prior distributions
+  # Specify precision (not variance or standard deviation) in normal distribution
+  mu ~ dnorm(0, .0625)
+  for(i in 1:max(region)){
+    mui[i] ~ dnorm(mu, tau2inv)
+  }
+  # Use rate parameterization for gamma distribution
+  tau2inv ~ dgamma(.001, .001)
+
+  # Transformations
+  tau2 = tau2inv^-1
+}
