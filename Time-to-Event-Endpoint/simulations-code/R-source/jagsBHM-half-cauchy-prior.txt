@@ -1,0 +1,20 @@
+
+model{
+  for(i in 1:max(region)){
+    # Likelihood part of Bayesian inference
+    y[i] ~ dnorm(mui[i], 1/s2i[i])
+  }
+  
+  # Prior distributions
+  # Specify precision (not variance or standard deviation) in normal distribution
+  mu ~ dnorm(0, .0625)
+  for(i in 1:max(region)){
+    mui[i] ~ dnorm(mu, tau2inv)
+  }
+  # Half-Cauchy prior on standard deviation tau
+  tau ~ dt(0, 10, 1) T(0,)
+
+  # Transformations
+  tau2inv = tau^-2
+  tau2 = tau^2
+}
