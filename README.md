@@ -15,8 +15,12 @@ Time-to-Event-Endpoint
      for MRCTs with a time-to-event endpoint.
 
 
+Joint Model with Time-to-Event-Endpoint and Continuous Longitudinal Marker
+   - Contains all files and code used in the simulation studies that evaluate the BMA approach
+     for MRCTs with both a time-to-event endpoint and a continuous longitudinal marker.
 
-GUIDE TO SIMULATION CODE IN FOLDERS "CONTINUOUS-ENDPOINT" AND "TIME-TO-EVENT-ENDPOINT" (MORE-DETAILED GUIDES PROVIDED IN EACH FOLDER AND EACH SUBFOLDER):
+
+GUIDE TO SIMULATION CODE IN FOLDERS "CONTINUOUS-ENDPOINT", "TIME-TO-EVENT-ENDPOINT", and "JOINT MODEL WITH TIME-TO-EVENT-ENDPOINT AND CONTINUOUS LONGITUDINAL MARKER" (MORE-DETAILED GUIDES PROVIDED IN EACH FOLDER AND EACH SUBFOLDER):
 
 
 In addition to the following folders found in this GitHub repository, blank folders should also be created titled "cluster-err" and "cluster-out". Error files and out files from the cluster will be saved here when running the simulations.
