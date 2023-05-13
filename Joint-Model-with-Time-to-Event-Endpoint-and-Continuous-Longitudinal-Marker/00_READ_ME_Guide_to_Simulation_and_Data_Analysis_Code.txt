@@ -15,6 +15,6 @@ example-analysis - R code used to run the BMA approach on either a simulated dat
 
 
 
-simulations-code - code and all other files needed to reproduce the simulation results
-   discussed in the main paper and the Supplementary Materials
+simulations-code - code and a simulated example dataset needed to reproduce the simulation
+   results discussed in the main paper and the Supplementary Materials
 
