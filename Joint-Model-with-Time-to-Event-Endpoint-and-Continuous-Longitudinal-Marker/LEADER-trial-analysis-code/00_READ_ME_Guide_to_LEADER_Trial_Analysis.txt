@@ -1,8 +1,0 @@
-GUIDE TO LEADER TRIAL ANALYSIS:
-
-
-Code used to run the BMA algorithm on the LEADER trial data (data not included).
-
-
-[NOTE: FILES TO BE ADDED ONCE THEIR EXPORT FROM A REMOTE DESKTOP HAS BEEN APPROVED]
-
