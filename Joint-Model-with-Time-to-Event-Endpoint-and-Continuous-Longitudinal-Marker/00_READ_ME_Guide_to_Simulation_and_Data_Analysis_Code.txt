@@ -11,8 +11,8 @@ further clarify their contents.
 Folders:
 
 
-LEADER-trial-analysis-code - R code used to run the BMA approach on the LEADER trial data.
-   The data and any code used to prepare the data are not included
+example-analysis - R code used to run the BMA approach on either a simulated dataset or
+   a real dataset that can be uploaded.
 
 
 
