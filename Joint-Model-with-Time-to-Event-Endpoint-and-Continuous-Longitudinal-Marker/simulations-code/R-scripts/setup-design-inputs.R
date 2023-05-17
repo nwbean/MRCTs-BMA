@@ -23,12 +23,16 @@ sim.version <- "equal_samp_n9340_T0equal2" # version of simulation
 #sim.version <- "survival-models-only" # version of simulation
 #sim.version <- "full-joint-model"   # version of simulation
 #sim.version <- "SA_n9340"           # version of simulation
+#sim.version <- "original_n9340_T0equal3"   # version of simulation
+#sim.version <- "original_n9340_T0equal4"   # version of simulation
 #sim.id.number <- 93400              # seed for simulation version "original_n9340_T0equal2"
 sim.id.number <- 93403              # seed for simulation version "equal_samp_n9340_T0equal2"
 #sim.id.number <- 93404              # seed for simulation version "alt_half_n9340"
 #sim.id.number <- 93405              # seed for simulation version "null_half_n9340"
 #sim.id.number <- 93406              # seed for simulation version "survival-models-only"
 #sim.id.number <- 93407              # seed for simulation version "full-joint-model"
+#sim.id.number <- 93408              # seed for simulation version "original_n9340_T0equal4"
+#sim.id.number <- 93409              # seed for simulation version "original_n9340_T0equal3"
 
 
 
@@ -40,8 +44,9 @@ sim.id.number <- 93403              # seed for simulation version "equal_samp_n9
 #################################################################################
 
 S <- 4                                                  # number of regions
-#T0 <- 4                                                 # max number of distinct regions to consider
 T0 <- 2                                                 # max number of distinct regions to consider
+#T0 <- 3                                                 # max number of distinct regions to consider
+#T0 <- 4                                                 # max number of distinct regions to consider
 reg.names <- c("Reg1", "Reg2", "Reg3", "Reg4")          # region names in alphabetical order
 #reg.names <- c("Asia", "Europe", "NorthAmerica", "RoW") # region names in alphabetical order (v. original)
 N <- 9340                                               # total number of subjects (v. "n9340")
@@ -79,6 +84,7 @@ num.total.ds <- 10000                           # number of total datasets to si
 # Set num.ds.row = 20 for v. "null_half_n9340"
 # Set num.ds.row = 2500 for v. "survival-models-only"
 # Set num.ds.row = 400 for v. "survival-models-only"
+# Set num.ds.row = 5 for v. "original_n9340_T0equal3" and "original_n9340_T0equal4"
 num.ds.row <- 20                     # number of datasets to simulate per row of design inputs
 num.repeat.rows <- ceiling(num.total.ds / num.ds.row)     # number of repeated rows per scenario
 total.num.rows <- num.repeat.rows * num.scenarios         # total number of rows for design inputs
@@ -140,7 +146,8 @@ rep.row <- function(x, n){
 for(i in 1:num.scenarios){
   first.row <- (i-1)*num.repeat.rows + 1
   last.row <- i*num.repeat.rows
-  if( sim.version %in% c("original_n9340", "original_n9340_T0equal2") ){
+  if( sim.version %in% c("original_n9340", "original_n9340_T0equal2",
+                         "original_n9340_T0equal3", "original_n9340_T0equal4") ){
     if(i == 1){
       inputs.mat1.4[first.row:last.row,] <- rep.row( rep(hr.trtmt, 4), num.repeat.rows )
     } else{

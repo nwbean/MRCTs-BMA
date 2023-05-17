@@ -36,8 +36,14 @@ mse.rte.file <- paste("./", sim.version, "/mse/rte_mse_", sim.version, "-", 1, "
 mse.rte.scen.mat <- read.csv(mse.rte.file, header = TRUE)
 mse.rte.scen.mat[1:4, 2:(S+1)] <- 0      # matrix to store rte MSEs for scenario
 
+## Bias (regional treatment effects) results (v1)
+bias.file <- paste("./", sim.version, "/bias/rte_bias_", sim.version, "-", 1, ".csv", sep = "")
+bias.scen.mat <- read.csv(bias.file, header = TRUE)
+bias.scen.mat[1:4, 2:(S+1)] <- 0      # matrix to store rte bias for scenario
+
 rr.list <- list()                 # list to store rr.scen.mat for each scenario
 mse.rte.list <- list()            # list to store mse.rte.scen.mat for each scenario
+bias.list <- list()               # list to store bias.scen.mat for each scenario
 
 
 which.scen <- 1                   # scenario indicator
@@ -53,22 +59,30 @@ for(j in 1:tot.num.results){
   mse.rte.part.mat <- read.csv(mse.rte.file, header = TRUE)
   mse.rte.scen.mat[1:4, 2:(S+1)] <- mse.rte.scen.mat[1:4, 2:(S+1)] + mse.rte.part.mat[1:4, 2:(S+1)]
   
+  # Matrix of bias (rte) with part of simulation results (1 out of num.per.scen)
+  bias.file <- paste("./", sim.version, "/bias/rte_bias_", sim.version, "-", j, ".csv", sep = "")
+  bias.part.mat <- read.csv(bias.file, header = TRUE)
+  bias.scen.mat[1:4, 2:(S+1)] <- bias.scen.mat[1:4, 2:(S+1)] + bias.part.mat[1:4, 2:(S+1)]
+  
   # After iterating through num.per.scen files, store results in lists and change scenario indicator
   if(j %% num.per.scen == 0){
     
     # Average results
     rr.scen.mat[1:4, 2:(S+2)] <- rr.scen.mat[1:4, 2:(S+2)] / num.per.scen
     mse.rte.scen.mat[1:4, 2:(S+1)] <- mse.rte.scen.mat[1:4, 2:(S+1)] / num.per.scen
+    bias.scen.mat[1:4, 2:(S+1)] <- bias.scen.mat[1:4, 2:(S+1)] / num.per.scen
     
     # Store results in list
     scen.lab <- paste("scenario_", which.scen, sep = "")
     rr.list[[scen.lab]] <- rr.scen.mat                 # save scenario-specific matrix of rr's
     mse.rte.list[[scen.lab]] <- mse.rte.scen.mat       # save scenario-specific matrix of mse.rte's
+    bias.list[[scen.lab]] <- bias.scen.mat             # save scenario-specific matrix of biases
     
     # Reset matrices and prepare for next scenario
     which.scen <- which.scen + 1                       # increase scenario indicator
     rr.scen.mat[1:4, 2:(S+2)] <- 0
     mse.rte.scen.mat[1:4, 2:(S+1)] <- 0
+    bias.scen.mat[1:4, 2:(S+1)] <- 0
     
   }
   
@@ -90,6 +104,7 @@ if(sim.version == "equal-samp-alpha0p5"){
   
   rr.list.new <- rr.list
   mse.list.new <- mse.rte.list
+  bias.list.new <- bias.list
   for(i in 1:(S+1)){
     
     # Rejection rates
@@ -110,6 +125,15 @@ if(sim.version == "equal-samp-alpha0p5"){
     rownames(mse.mat) <- c("CPHM", "BMA-S", "BMA-JM-Q5", "BMA-JM-Q8", "BMA-JM-Q12")
     mse.list.new[[i]] <- mse.mat
     
+    # Bias
+    bias.mat <- rbind( bias.list[[i]][1,2:(S+1)],
+                       bias.list[[i]][3,2:(S+1)],
+                       rep(0, S),
+                       bias.list[[i]][2,2:(S+1)],
+                       rep(0, S) )
+    rownames(bias.mat) <- c("CPHM", "BMA-S", "BMA-JM-Q5", "BMA-JM-Q8", "BMA-JM-Q12")
+    bias.list.new[[i]] <- bias.mat
+    
   }
   
 } else if(sim.version == "equal-samp-Q5"){
@@ -122,6 +146,9 @@ if(sim.version == "equal-samp-alpha0p5"){
     # MSE
     mse.list.new[[i]][3,] <- mse.rte.list[[i]][2,2:(S+1)]
     
+    # Bias
+    bias.list.new[[i]][3,] <- bias.list[[i]][2,2:(S+1)]
+    
   }
   
 } else if(sim.version == "equal-samp-Q12"){
@@ -133,6 +160,9 @@ if(sim.version == "equal-samp-alpha0p5"){
     
     # MSE
     mse.list.new[[i]][5,] <- mse.rte.list[[i]][2,2:(S+1)]
+    
+    # Bias
+    bias.list.new[[i]][5,] <- bias.list[[i]][2,2:(S+1)]
     
   }
   
@@ -212,6 +242,42 @@ rel.MSE.mat.null[3,] <- rowMeans(mse.list.new[[4]][,1:3]) / rowMeans(mse.list.ne
 # Scenario 5: 4 nulls
 # null regions
 rel.MSE.mat.null[4,] <- rowMeans(mse.list.new[[5]]) / rowMeans(mse.list.new[[5]][1,])
+
+
+
+### Combine regional treatment effect bias according to null and alternative regions for each scenario
+
+## Bias for regional treatment effects
+
+bias.mat.alt <- matrix(0, nrow = S, ncol = 3)
+bias.mat.null <- matrix(0, nrow = S, ncol = 3)
+colnames(bias.mat.alt) <- c("BMA-JM-Q5", "BMA-JM-Q8", "BMA-JM-Q12")
+
+# Scenario 1: 0 nulls
+# alternative regions
+bias.mat.alt[1,] <- rowMeans(bias.list.new[[1]][3:5,])
+
+# Scenario 2: 1 null
+# alternative regions
+bias.mat.alt[2,] <- rowMeans(bias.list.new[[2]][3:5,2:4])
+# null regions
+bias.mat.null[1,] <- bias.list.new[[2]][3:5,1]
+
+# Scenario 3: 2 nulls
+# alternative regions
+bias.mat.alt[3,] <- rowMeans(bias.list.new[[3]][3:5,3:4])
+# null regions
+bias.mat.null[2,] <- rowMeans(bias.list.new[[3]][3:5,1:2])
+
+# Scenario 4: 3 nulls
+# alternative regions
+bias.mat.alt[4,] <- bias.list.new[[4]][3:5,4]
+# null regions
+bias.mat.null[3,] <- rowMeans(bias.list.new[[4]][3:5,1:3])
+
+# Scenario 5: 4 nulls
+# null regions
+bias.mat.null[4,] <- rowMeans(bias.list.new[[5]][3:5,])
 
 
 

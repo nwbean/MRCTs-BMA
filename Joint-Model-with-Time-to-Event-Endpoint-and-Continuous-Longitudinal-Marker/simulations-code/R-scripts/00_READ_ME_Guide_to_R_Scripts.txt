@@ -70,8 +70,39 @@ compile-results-survival-models-only.R - plots bar graphs to compare the simulat
 
 
 
+compile-results-T0-comparison.R - plots bar graphs to compare the BMA joint modeling approach
+     for different values of the maximum distinct treatment effects per submodel (T0) with
+     respect to the global rejection rates, MSE of region-specific treatment effects, and
+     true/false positive rates for the region-specific treatment effects on the time-to-event
+     endpoint for the following simulation study:
+        - original-alpha0p5
+        - original-T0equal3
+        - original-T0equal4
+
+
+
+compile-results-violations.R - summarize bias, MSE, and posterior means for scenarios that
+     violate model assumptions and compare these operating characteristics to the scenario
+     in which all underlying model assumptions are satisfied. The results are summarized for
+     the following simulation study:
+        - equal-samp-alpha0p5
+        - equal-samp-log-gamma-re
+        - equal-samp-nonPH
+        - equal-samp-inf-cens
+
+
+
 data-simulation-functions.R - functions to simulate both survival and longitudinal data
 
+
+
+data-simulation-functions-inf-cens.R - functions to simulate both survival and longitudinal
+     data for simulation study with informative censoring
+
+
+
+data-simulation-functions-nonPH.R - functions to simulate both survival and longitudinal
+     data for simulation study with non-proportional hazards
 
 
 full-simulation-function.R - function that runs entire simulation for the following studies:
@@ -87,6 +118,24 @@ full-simulation-function.R - function that runs entire simulation for the follow
    - original-alpha0p15
    - original-alpha0p5
    - original-alpha1
+
+
+
+full-simulation-function-inf-cens.R - function that runs entire simulation for the following
+     study:
+   - equal-samp-inf-cens
+
+
+
+full-simulation-function-log-gamma-re.R - function that runs entire simulation for the
+     following study:
+   - equal-samp-log-gamma-re
+
+
+
+full-simulation-function-nonPH.R - function that runs entire simulation for the following
+     study:
+   - equal-samp-nonPH
 
 
 
@@ -161,6 +210,45 @@ run-simulation-equal-samp-alt-half.R - runs simulation "equal-samp-alt-half" wit
    - a_X: 0
    - a_Y: 0
    - alpha: 0.5
+
+
+
+run-simulation-equal-samp-inf-cens.R - runs simulation "equal-samp-inf-cens" with the following
+     details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - informative censoring mechanism
+
+
+
+run-simulation-equal-samp-log-gamma-re.R - runs simulation "equal-samp-log-gamma-re" with the
+     following details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - subject-specific random intercepts drawn from log-gamma distribution
+
+
+
+run-simulation-equal-samp-nonPH.R - runs simulation "equal-samp-nonPH" with the following
+     details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - non-proportional hazards
 
 
 
@@ -248,6 +336,34 @@ run-simulation-original-alpha1.R - runs simulation "original-alpha1" with the fo
 
 
 
+run-simulation-original-T0equal3.R - runs simulation "original-T0equal3" with the following
+     details:
+   - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
+   - case 1: treatment hazard ratios of .868 for all regions
+   - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - T0: 3
+
+
+
+run-simulation-original-T0equal4.R - runs simulation "original-T0equal4" with the following
+     details:
+   - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
+   - case 1: treatment hazard ratios of .868 for all regions
+   - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - T0: 4
+
+
+
 run-simulation-SA-model-priors.R - runs simulation "SA-model-priors" with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
@@ -256,6 +372,7 @@ run-simulation-SA-model-priors.R - runs simulation "SA-model-priors" with the fo
    - a_X: values in {-1, 0, 1}
    - a_Y: values in {-1, 0, 1}
    - alpha: 0.5
+
 
 
 run-simulation-survival-models-only.R - runs simulation "survival-models-only" with the following
