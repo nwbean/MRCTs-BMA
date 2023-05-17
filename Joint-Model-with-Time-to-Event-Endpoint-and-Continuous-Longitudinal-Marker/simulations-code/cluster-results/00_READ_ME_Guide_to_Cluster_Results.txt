@@ -11,7 +11,7 @@ Folders for the following simulation studies containing results for the global
 
 
 
-batch-equal-samp-alpha0.sh - runs simulation "equal-samp-alpha0" with the following details:
+equal-samp-alpha0 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -22,7 +22,7 @@ batch-equal-samp-alpha0.sh - runs simulation "equal-samp-alpha0" with the follow
 
 
 
-batch-equal-samp-alpha0p15.sh - runs simulation "equal-samp-alpha0p15" with the following details:
+equal-samp-alpha0p15 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -33,7 +33,7 @@ batch-equal-samp-alpha0p15.sh - runs simulation "equal-samp-alpha0p15" with the 
 
 
 
-batch-equal-samp-alpha0p5.sh - runs simulation "equal-samp-alpha0p5" with the following details:
+equal-samp-alpha0p5 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -44,7 +44,7 @@ batch-equal-samp-alpha0p5.sh - runs simulation "equal-samp-alpha0p5" with the fo
 
 
 
-batch-equal-samp-alpha1.sh - runs simulation "equal-samp-alpha1" with the following details:
+equal-samp-alpha1 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -55,7 +55,7 @@ batch-equal-samp-alpha1.sh - runs simulation "equal-samp-alpha1" with the follow
 
 
 
-batch-equal-samp-alt-half.sh - runs simulation "equal-samp-alt-half" with the following details:
+equal-samp-alt-half - simulation with the following details:
    - alternative sample sizes half of null
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -66,7 +66,44 @@ batch-equal-samp-alt-half.sh - runs simulation "equal-samp-alt-half" with the fo
 
 
 
-batch-equal-samp-null-half.sh - runs simulation "equal-samp-null-half" with the following details:
+equal-samp-inf-cens - simulation with the following details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - informative censoring mechanism
+
+
+
+equal-samp-log-gamma-re - simulation with the following
+     details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - subject-specific random intercepts drawn from log-gamma distribution
+
+
+
+equal-samp-nonPH - simulation with the following details:
+   - equal regional sample sizes
+   - treatment hazard ratio of .868 for alternative regions
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - non-proportional hazards
+
+
+
+equal-samp-null-half - simulation with the following details:
    - null sample sizes half of alternative
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -77,7 +114,7 @@ batch-equal-samp-null-half.sh - runs simulation "equal-samp-null-half" with the 
 
 
 
-batch-equal-samp-Q5.sh - runs simulation "equal-samp-Q5" with the following details:
+equal-samp-Q5 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -88,7 +125,7 @@ batch-equal-samp-Q5.sh - runs simulation "equal-samp-Q5" with the following deta
 
 
 
-batch-equal-samp-Q12.sh - runs simulation "equal-samp-Q12" with the following details:
+equal-samp-Q12 - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -99,7 +136,7 @@ batch-equal-samp-Q12.sh - runs simulation "equal-samp-Q12" with the following de
 
 
 
-batch-original-alpha0.sh - runs simulation "original-alpha0" with the following details:
+original-alpha0 - simulation with the following details:
    - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
    - case 1: treatment hazard ratios of .868 for all regions
    - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
@@ -111,7 +148,7 @@ batch-original-alpha0.sh - runs simulation "original-alpha0" with the following 
 
 
 
-batch-original-alpha0p15.sh - runs simulation "original-alpha0p15" with the following details:
+original-alpha0p15 - simulation with the following details:
    - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
    - case 1: treatment hazard ratios of .868 for all regions
    - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
@@ -123,7 +160,7 @@ batch-original-alpha0p15.sh - runs simulation "original-alpha0p15" with the foll
 
 
 
-batch-original-alpha0p5.sh - runs simulation "original-alpha0p5" with the following details:
+original-alpha0p5 - simulation with the following details:
    - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
    - case 1: treatment hazard ratios of .868 for all regions
    - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
@@ -135,7 +172,7 @@ batch-original-alpha0p5.sh - runs simulation "original-alpha0p5" with the follow
 
 
 
-batch-original-alpha1.sh - runs simulation "original-alpha1" with the following details:
+original-alpha1 - simulation with the following details:
    - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
    - case 1: treatment hazard ratios of .868 for all regions
    - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
@@ -147,7 +184,33 @@ batch-original-alpha1.sh - runs simulation "original-alpha1" with the following 
 
 
 
-batch-SA-model-priors.sh - runs simulation "SA-model-priors" with the following details:
+original-T0equal3 - simulation with the following details:
+   - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
+   - case 1: treatment hazard ratios of .868 for all regions
+   - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - T0: 3
+
+
+
+original-T0equal4 - simulation with the following details:
+   - sample sizes of 711, 3296, 2847, 2486 for Regions 1-4
+   - case 1: treatment hazard ratios of .868 for all regions
+   - case 2: treatment hazard ratios of .62, .82, 1.01, .83 for Regions 1-4
+   - N = 9340
+   - Q: 8
+   - a_X: 0
+   - a_Y: 0
+   - alpha: 0.5
+   - T0: 4
+
+
+
+SA-model-priors - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
@@ -157,7 +220,8 @@ batch-SA-model-priors.sh - runs simulation "SA-model-priors" with the following 
    - alpha: 0.5
 
 
-batch-survival-models-only.sh - runs simulation "survival-models-only" with the following details:
+
+survival-models-only - simulation with the following details:
    - equal regional sample sizes
    - treatment hazard ratio of .868 for alternative regions
    - N = 9340
